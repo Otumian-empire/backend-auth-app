@@ -17,9 +17,9 @@ const sessionConfig = ({ uri, secret }) => {
         uri,
         expires: sessionLifeTime,
       },
-      (err) => {
-        if (err) {
-          logger.error(err);
+      (error) => {
+        if (error) {
+          logger.error(error.message);
         }
       }
     ),
