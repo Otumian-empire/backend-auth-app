@@ -10,7 +10,7 @@ const sessionConfig = ({ uri, secret }) => {
       maxAge: sessionLifeTime,
       path: "/",
       httpOnly: false,
-      secure: false,
+      secure: true,
     },
     store: new MongoDBStore(
       {

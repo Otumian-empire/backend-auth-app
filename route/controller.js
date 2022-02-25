@@ -3,10 +3,12 @@ const logger = require("../configs/logger");
 
 const profileController = async (req, res) => {
   try {
-    const id = req.authUser.id;
+    const id = req.session.user.id;
+    const isActive = id || false;
+
     const profile = await Profile.findById(id);
 
-    return res.render("profile", { profile });
+    return res.render("profile", { profile, isActive });
   } catch (error) {
     logger.error(error.message);
     return res.redirect("/logout");
@@ -15,15 +17,12 @@ const profileController = async (req, res) => {
 
 const profileUpdateController = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.session.user.id;
+    const isActive = id || false;
 
-    if (req.authUser.id !== id) {
-      throw new Error("profile ID doesn't match the authenticated user ID");
-    }
+    const profile = await Profile.findById(id);
 
-    const profile = Profile.findById(id);
-
-    return res.render("profile_update", { profile });
+    return res.render("profile_update", { profile, isActive });
   } catch (error) {
     logger.error(error.message);
     return res.redirect("/");
@@ -32,15 +31,12 @@ const profileUpdateController = async (req, res) => {
 
 const updatePasswordController = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    if (req.authUser.id !== id) {
-      throw new Error("profile ID doesn't match the authenticated user ID");
-    }
+    const id = req.session.user.id;
+    const isActive = id || false;
 
     const profile = await Profile.findById(id);
 
-    return res.render("password_update", { profile });
+    return res.render("password_update", { profile, isActive });
   } catch (error) {
     logger.error(error.message);
     return res.redirect("/");
@@ -51,10 +47,8 @@ const logoutController = (req, res) => {
   let redirectUrl = "/login";
 
   try {
-    const session = { ...req.session.user };
-
-    if (session && session.email) {
-      redirectUrl += `?email=${session.email}`;
+    if (req.session.user && req.session.user.id && req.session.user.email) {
+      redirectUrl += `?email=${req.session.user.email}`;
     }
 
     res.clearCookie("connect.sid");

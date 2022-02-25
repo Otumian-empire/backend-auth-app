@@ -11,7 +11,7 @@
         <div class="card-header">Change Info</div>
 
         <div class="card-body">
-          <form method="" id="updateProfileForm">
+          <form method="" id="profileUpdateForm">
             <!-- name -->
             <div class="form-group mt-3">
               <div class="form-label-group">
@@ -22,7 +22,7 @@
                   id="name"
                   name="name"
                   placeholder="Enter your name.."
-                  value=""
+                  value="<%= profile.name %>"
                   autofocus
                 />
               </div>
@@ -38,7 +38,7 @@
                   id="phone"
                   name="phone"
                   placeholder="Enter your phone.."
-                  value=""
+                  value="<%= profile.phone %>"
                 />
               </div>
             </div>
@@ -53,7 +53,7 @@
                   id="email"
                   name="email"
                   placeholder="Enter your email.."
-                  value=""
+                  value="<%= profile.email %>"
                   autocomplete="email"
                 />
               </div>
@@ -71,7 +71,9 @@
                   name="bio"
                   rows="3"
                   placeholder="Enter your bio.."
-                ></textarea>
+                >
+<%= profile.bio %></textarea
+                >
               </div>
             </div>
 

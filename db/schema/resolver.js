@@ -4,7 +4,7 @@ const Profile = require("../models");
 const { ROUNDS } = require("../../configs/app.config");
 const logger = require("../../configs/logger");
 
-const createProfile = async (parent, args) => {
+const createProfile = async (_, args, request) => {
   try {
     const { name, bio, phone, email, password } = args;
 
@@ -25,21 +25,30 @@ const createProfile = async (parent, args) => {
       };
     }
 
-    return newUser;
+    request.session.user = {
+      id: newUser._id.toString(),
+      email: newUser.email,
+    };
+
+    await request.session.save();
+
+    return {
+      success: true,
+      message: "Signup successful",
+    };
   } catch (error) {
     logger.error(error.message);
     return {
       success: false,
-      message: "An error occurred",
+      message: error.message,
     };
   }
 };
 
-const updateProfile = async (parent, args) => {
-  const response = { success: true, message: "update successful" };
-
+const updateProfile = async (_, args, request) => {
   try {
-    const { id, name, bio, phone, email } = args;
+    const id = request.session.user.id;
+    const { name, bio, phone, email } = args;
 
     const updatedUser = await Profile.updateOne(
       { id },
@@ -47,46 +56,95 @@ const updateProfile = async (parent, args) => {
     );
 
     if (!updatedUser) {
-      response.success = false;
-      response.message = "Update unsuccessful";
+      return {
+        success: false,
+        message: "Update unsuccessful",
+      };
     }
+
+    return {
+      success: true,
+      message: "Update successful",
+    };
   } catch (error) {
     logger.error(error.message);
-    response.success = false;
-    response.message = error.message;
-  } finally {
-    return response;
+    return {
+      success: false,
+      message: error.message,
+    };
   }
 };
 
-const updateProfilePassword = async (parent, args) => {
-  const response = { success: true, message: "Update successful" };
-
+const updateProfilePassword = async (_, args, request) => {
   try {
-    const { id, password } = args;
+    const id = request.session.user.id;
+    const { password } = args;
+
     const hash = await bcrypt.hash(password, ROUNDS);
     const updatedUser = await Profile.updateOne({ id }, { password: hash });
 
     if (!updatedUser) {
-      response.success = false;
-      response.message = "Update unsuccessful";
+      return {
+        success: false,
+        message: "Update unsuccessful",
+      };
     }
+
+    return {
+      success: true,
+      message: "Update successful",
+    };
   } catch (error) {
     logger.error(error.message);
-    response.success = false;
-    response.message = error.message;
-  } finally {
-    return response;
+    return {
+      success: false,
+      message: error.message,
+    };
   }
 };
 
-const findUserById = (parent, args) => {
-  return Profile.findById(args.id);
+const loginUser = async (_, args, request) => {
+  try {
+    const { email, password } = args;
+
+    const user = await Profile.findOne({ email });
+
+    if (!user) {
+      return {
+        success: false,
+        message: "Invalid credentials",
+      };
+    }
+
+    const matches = await bcrypt.compare(password, user.password);
+
+    if (!matches) {
+      return {
+        success: false,
+        message: "Invalid credentials",
+      };
+    }
+
+    request.session.user = { email: user.email, id: user.id.toString() };
+
+    await request.session.save();
+
+    return {
+      success: true,
+      message: "login successful",
+    };
+  } catch (error) {
+    logger.error(error.message);
+    return {
+      success: false,
+      message: error.message,
+    };
+  }
 };
 
 module.exports = {
   createProfile,
   updateProfile,
   updateProfilePassword,
-  findUserById,
+  loginUser,
 };

@@ -1,8 +1,6 @@
 // keep authorized session (user) from visiting the login and signup routes
 const isSessionAuthorized = (req, res, next) => {
-  const authUser = { ...req.session.user };
-
-  if (authUser && authUser.email && authUser.id) {
+  if (req.session.user && req.session.user.email && req.session.user.id) {
     return res.redirect("/");
   }
 
@@ -11,14 +9,11 @@ const isSessionAuthorized = (req, res, next) => {
 
 // allows only authorized session to access said route
 const protectRoute = (req, res, next) => {
-  const authUser = { ...req.session.user };
-
-  if (!authUser || authUser.email || authUser.id) {
-    return res.redirect("/logout");
+  if (req.session.user && req.session.user.email && req.session.user.id) {
+    return next();
   }
 
-  req.authUser = authUser;
-  return next();
+  return res.redirect("/logout");
 };
 
 module.exports = { isSessionAuthorized, protectRoute };

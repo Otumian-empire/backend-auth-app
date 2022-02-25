@@ -44,7 +44,10 @@ app.use(httpLogger);
 app.use("/", webRoutes);
 app.use(
   "/graphql",
-  graphqlHTTP({ graphiql: process.env.NODE_ENV !== "production", schema })
+  graphqlHTTP({
+    schema,
+    graphiql: process.env.NODE_ENV !== "production",
+  })
 );
 
 // only serve when the database is connected

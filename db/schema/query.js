@@ -1,17 +1,20 @@
 const { GraphQLObjectType, GraphQLString } = require("graphql");
 
-const { ProfileType } = require("./types");
-const { findUserById } = require("./resolver");
+const { ResponseType } = require("./types");
+const { loginUser } = require("./resolver");
 
 const RootQueryType = new GraphQLObjectType({
   name: "Query",
   description: "Root Query",
   fields: () => ({
-    user: {
-      type: ProfileType,
+    login: {
+      type: ResponseType,
       description: "A single user",
-      args: { id: { type: GraphQLString } },
-      resolve: findUserById,
+      args: {
+        email: { type: GraphQLString },
+        password: { type: GraphQLString },
+      },
+      resolve: loginUser,
     },
   }),
 });

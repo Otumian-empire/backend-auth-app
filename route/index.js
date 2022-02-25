@@ -12,19 +12,19 @@ const {
 router.get("/", protectRoute, profileController);
 
 // edit profile view
-router.get("/update/:id", protectRoute, profileUpdateController);
+router.get("/update", protectRoute, profileUpdateController);
 
 // edit password
-router.get("/update/password/:id", protectRoute, updatePasswordController);
+router.get("/update/password", protectRoute, updatePasswordController);
 
 // signup view
 router.get("/signup", isSessionAuthorized, (_req, res) => {
-  return res.render("signup");
+  return res.render("signup", { isActive: false });
 });
 
 // login view
 router.get("/login", isSessionAuthorized, (_req, res) => {
-  return res.render("login");
+  return res.render("login", { isActive: false });
 });
 
 // logout endpoint

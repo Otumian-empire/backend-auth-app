@@ -1,6 +1,6 @@
 const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = require("graphql");
 
-const { ProfileType, ResponseType } = require("./types");
+const { ResponseType } = require("./types");
 const {
   createProfile,
   updateProfile,
@@ -11,8 +11,8 @@ const RootMutationType = new GraphQLObjectType({
   name: "Mutation",
   description: "Root Mutation",
   fields: () => ({
-    create: {
-      type: ProfileType,
+    signup: {
+      type: ResponseType,
       description: "A create a single user",
       args: {
         name: { type: GraphQLNonNull(GraphQLString) },
@@ -23,11 +23,10 @@ const RootMutationType = new GraphQLObjectType({
       },
       resolve: createProfile,
     },
-    update: {
+    updateProfile: {
       type: ResponseType,
-      description: "A update a single user by id",
+      description: "A update a single user",
       args: {
-        id: { type: GraphQLNonNull(GraphQLString) },
         name: { type: GraphQLNonNull(GraphQLString) },
         bio: { type: GraphQLNonNull(GraphQLString) },
         phone: { type: GraphQLNonNull(GraphQLString) },
@@ -37,9 +36,8 @@ const RootMutationType = new GraphQLObjectType({
     },
     updatePassword: {
       type: ResponseType,
-      description: "A update a single user's password by id",
+      description: "A update a single user's password",
       args: {
-        id: { type: GraphQLNonNull(GraphQLString) },
         password: { type: GraphQLNonNull(GraphQLString) },
       },
       resolve: updateProfilePassword,
