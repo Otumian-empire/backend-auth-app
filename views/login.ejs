@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('include/head'); %>
+
+  <body>
+    <%- include ('include/navbar'); %>
+    <div id="" class="container">
+      <!-- sign in starts here -->
+      <div class="card card-login mx-auto mt-5 mb-5">
+        <div class="card-header">Login</div>
+
+        <div class="card-body">
+          <form method="" id="loginForm">
+            <!-- email -->
+            <div class="form-group mt-3">
+              <div class="form-label-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email.."
+                  value=""
+                  autocomplete="email"
+                  autofocus
+                />
+              </div>
+            </div>
+
+            <!-- password -->
+            <div class="form-group mt-3">
+              <div class="form-label-group">
+                <label for="password" class="text-capitalize">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password.."
+                />
+              </div>
+            </div>
+
+            <!-- button -->
+            <button
+              type="submit"
+              class="btn btn-primary btn-block mt-3"
+              name="submit"
+              value="submit"
+            >
+              Start Coding Now
+            </button>
+          </form>
+          <!-- form ends here -->
+        </div>
+
+        <div class="text-center mb-1">
+          <a class="d-block small mt-3 text-capitalize" href="/signup"
+            >Signup</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <%- include ('include/footer'); %>
+</html>

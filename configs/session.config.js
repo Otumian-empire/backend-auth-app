@@ -1,7 +1,7 @@
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const logger = require("./logger");
-const sessionLifeTime = 1000 * 60 * 60 * 24 * 7;
+const sessionLifeTime = 1000 * 60 * 60 * 24 * 7; // 1 week
 
 const sessionConfig = ({ uri, secret }) => {
   return session({

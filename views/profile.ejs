@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('include/head'); %>
+  <body>
+    <%- include ('include/navbar'); %>
+    <div id="" class="container">
+      <!-- if current user -->
+      <div class="card card-update mx-auto mt-5 mb-5">
+        <div class="card-header">Personal Info</div>
+        <div class="d-flex flex-row-reverse bd-highlight mb-3">
+          <a
+            href="/update/:id"
+            class="p-2 bd-highlight btn btn-sm btn-primary m-1"
+            >Edit</a
+          >
+        </div>
+
+        <!-- card body for name starts here -->
+        <div class="card-body text-capitalize">
+          <!-- name starts here -->
+          <div class="row">
+            <div class="col-6 col-sm-3">Name</div>
+            <div class="col-6 col-sm-3">Current Name</div>
+          </div>
+          <!--  name form ends here -->
+        </div>
+        <!-- card body for name ends here -->
+        <hr />
+
+        <!-- card body for phone starts here -->
+        <div class="card-body text-capitalize">
+          <!-- phone starts here -->
+          <div class="row">
+            <div class="col-6 col-sm-3">Phone</div>
+            <div class="col-6 col-sm-3">Current Phone</div>
+          </div>
+          <!-- phone form ends here -->
+        </div>
+        <!-- card body for name ends here -->
+        <hr />
+
+        <!-- card body for email starts here -->
+        <div class="card-body text-capitalize">
+          <!-- email starts here -->
+          <div class="row">
+            <div class="col-6 col-sm-3">Email</div>
+            <div class="col-6 col-sm-3">Current Email</div>
+          </div>
+          <!-- email form ends here -->
+        </div>
+        <!-- card body for  name ends here -->
+        <hr />
+
+        <!-- card body for password starts here -->
+        <div class="card-body text-capitalize">
+          <!-- password starts here -->
+          <div class="row">
+            <div class="col-6 col-sm-3">Password</div>
+            <div class="col-6 col-sm-3">Current Password</div>
+          </div>
+
+          <div class="d-flex flex-row-reverse bd-highlight">
+            <a
+              href="/update/password/:id"
+              class="p-2 bd-highlight btn-sm m-1"
+              style="text-decoration: none"
+              >Update password</a
+            >
+          </div>
+          <!-- password form ends here -->
+        </div>
+        <!-- card body for  name ends here -->
+        <hr />
+
+        <!-- card body for bio starts here -->
+        <div class="card-body text-capitalize">
+          <!-- bio starts here -->
+          <div class="row">
+            <div class="col-6 col-sm-3">Bio</div>
+            <div class="col-6 col-sm-3">Current Bio</div>
+          </div>
+          <!-- password form ends here -->
+        </div>
+        <!-- card body for  name ends here -->
+      </div>
+      <!-- card ends here -->
+    </div>
+  </body>
+
+  <%- include ('include/footer'); %>
+</html>
