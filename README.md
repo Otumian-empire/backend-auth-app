@@ -37,9 +37,7 @@
 
 ## Overview
 
-<!-- Add image -->
-
-![screenshot]()
+![screenshot](https://github.com/Otumian-empire/backend-auth-app/blob/main/Screenshot%202022-02-26%20at%2004-19-14%20Backend-Auth-App.png)
 
 - Where can I see your demo?
   I will host this application on heroku and make use of [mongodb atlas](https://www.mongodb.com/atlas) for persistent data storage. Now, since sometimes things happen unexpected, this repo's `main` branch could be the source of the demo else it is the `deploy` branch.
