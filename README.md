@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://backend-auth-app.herokuapp.com/">
       Demo
     </a>
     <span> | </span>
@@ -41,6 +41,9 @@
 
 - Where can I see your demo?
   I will host this application on heroku and make use of [mongodb atlas](https://www.mongodb.com/atlas) for persistent data storage. Now, since sometimes things happen unexpected, this repo's `main` branch could be the source of the demo else it is the `deploy` branch.
+
+  The video for the code walk through is on google drive, [here](https://drive.google.com/file/d/1G9i-yS_x7boFWd7qzyGVQs5TuZe6m6-h/view?usp=sharing) and that for the deployment is also [here](https://drive.google.com/file/d/1Tj2Wvkbaa1RvkNKlu91YyjjDwaRi0CMD/view?usp=sharing)
+
 - What was your experience building it.
   As a backend developer, try out some frontend activity was really brain-stretching. Even though I had to struggle and couple of times with sizing and designing, I decided to go with a minimal version of everything. This way I had more time to make the application work - meet the requirement.
 
